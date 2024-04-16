@@ -41,6 +41,10 @@ app.use(
     ].join(" ");
   })
 );
+
+app.get("/", (req, res) => {
+  res.send("<h1>Hello World!</h1>");
+});
 app.get("/api/persons", (req, res) => {
   res.json(persons);
 });
@@ -68,13 +72,11 @@ app.post("/api/persons", (req, res) => {
 
   // Name is not empty
   if (!tempPerson.name) {
-    res.status(400).json({ error: "Name is missing" });
-    return;
+    return res.status(400).json({ error: "Name is missing" });
   }
   // Number is not empty
   if (!tempPerson.number) {
-    res.status(400).json({ error: "Number is missing" });
-    return;
+    return res.status(400).json({ error: "Number is missing" });
   }
   // Check name is unique
   const person = persons.find(
